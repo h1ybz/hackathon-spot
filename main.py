@@ -43,7 +43,7 @@ def main():
         time.sleep(1)
         
         x_offset = 10
-        y_offset = 50
+        y_offset = 500
         spot.make_stance(x_offset, y_offset)
 
         # Make Spot to move by goal_x meters forward and goal_y meters left
