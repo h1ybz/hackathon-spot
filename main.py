@@ -41,9 +41,10 @@ def main():
                                  rolls=[0, 0.4],
                                  sleep_after_point_reached=1)
         time.sleep(1)
+        
         x_offset = 10
         y_offset = 50
-        make_stance(x_offset, y_offset)
+        spot.make_stance(x_offset, y_offset)
 
         # Make Spot to move by goal_x meters forward and goal_y meters left
         spot.move_to_goal(goal_x=0.5, goal_y=0)
