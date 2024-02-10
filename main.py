@@ -41,10 +41,9 @@ def main():
                                  rolls=[0, 0.4],
                                  sleep_after_point_reached=1)
         time.sleep(1)
-        dust_off(yaws=[0.2, 0],
-                pitches=[0.3, 0],
-                rolls=[0.4, 0],
-                sleep_after_point_reached=1)
+        x_offset = 10
+        y_offset = 50
+        make_stance(x_offset, y_offset)
 
         # Make Spot to move by goal_x meters forward and goal_y meters left
         spot.move_to_goal(goal_x=0.5, goal_y=0)
