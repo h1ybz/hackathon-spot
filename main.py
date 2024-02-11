@@ -42,7 +42,7 @@ def main():
                                  sleep_after_point_reached=1)
         time.sleep(1)
 
-        spot.my_stand(body_height=200.0, pos="yaw=0.4, roll=0.0, pitch=0.0")
+        spot.my_stand(bodyHeight=200.0, position="yaw=0.4, roll=0.0, pitch=0.0")
         time.sleep(3)
 
         # Make Spot to move by goal_x meters forward and goal_y meters left
