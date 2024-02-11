@@ -41,8 +41,8 @@ def main():
                                  rolls=[0.4, 0],
                                  sleep_after_point_reached=1)
         time.sleep(1)
-        
-        RobotCommandBuilder.synchro_stand_command(body_height=200.0, footprint_R_body=EulerZXY(yaw=0.4, roll=0.0, pitch=0.0))
+
+        spot.my_stand(self, body_height=200.0, pos="yaw=0.4, roll=0.0, pitch=0.0")
         time.sleep(3)
 
         # Make Spot to move by goal_x meters forward and goal_y meters left
