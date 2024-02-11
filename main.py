@@ -48,9 +48,9 @@ def main():
 
            # Head Bob
     for _ in range(3):  # Repeat 3 times
-        spot.move_head_in_points(yaws=[0], pitches=[0.4], rolls=[0], body_height=0.1) 
+        spot.move_head_in_points(yaws=[0, 0], pitches=[0.4, 0], rolls=[0, 0], body_height=0.1) 
         time.sleep(0.5)  # Pause briefly
-        spot.move_head_in_points(yaws=[0], pitches=[0], rolls=[0])  # Back to center
+        spot.move_head_in_points(yaws=[0, 0], pitches=[0, 0], rolls=[0, 0])  # Back to center
         time.sleep(0.5)
         
     # Side Shuffle
