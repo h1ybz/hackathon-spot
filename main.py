@@ -46,26 +46,26 @@ def main():
         spot.move_to_goal(goal_x=0.5, goal_y=0)
         time.sleep(3)
 
-           # Head Bob
-    for _ in range(3):  # Repeat 3 times
-        spot.move_head_in_points(yaws=[0, 0], pitches=[0.4, 0], rolls=[0, 0], body_height=0.1) 
-        time.sleep(0.5)  # Pause briefly
-        spot.move_head_in_points(yaws=[0, 0], pitches=[0, 0], rolls=[0, 0])  # Back to center
-        time.sleep(0.5)
-        
-    # Side Shuffle
-    for _ in range(2):
-        spot.move_by_velocity_control(v_x=0, v_y=0.4, v_rot=0, cmd_duration=0.7)  # Slide left
-        time.sleep(0.3)
-        spot.move_by_velocity_control(v_x=0, v_y=-0.4, v_rot=0, cmd_duration=0.7) # Slide right
-        time.sleep(0.3)
-
-    # The Circle
-    spot.move_by_velocity_control(v_x=0.2, v_y=0.2, v_rot=0.5, cmd_duration=3) 
-        
-    # Control Spot by velocity in m/s (or in rad/s for rotation)
-    spot.move_by_velocity_control(v_x=-0.3, v_y=0, v_rot=0, cmd_duration=2)
-    time.sleep(3)
+        # Head Bob
+        for _ in range(3):  # Repeat 3 times
+            spot.move_head_in_points(yaws=[0, 0], pitches=[0.4, 0], rolls=[0, 0]) 
+            time.sleep(0.5)  # Pause briefly
+            spot.move_head_in_points(yaws=[0, 0], pitches=[0, 0], rolls=[0, 0])  # Back to center
+            time.sleep(0.5)
+            
+        # Side Shuffle
+        for _ in range(2):
+            spot.move_by_velocity_control(v_x=0, v_y=0.4, v_rot=0, cmd_duration=0.7)  # Slide left
+            time.sleep(0.3)
+            spot.move_by_velocity_control(v_x=0, v_y=-0.4, v_rot=0, cmd_duration=0.7) # Slide right
+            time.sleep(0.3)
+    
+        # The Circle
+        spot.move_by_velocity_control(v_x=0.2, v_y=0.2, v_rot=0.5, cmd_duration=3) 
+            
+        # Control Spot by velocity in m/s (or in rad/s for rotation)
+        spot.move_by_velocity_control(v_x=-0.3, v_y=0, v_rot=0, cmd_duration=2)
+        time.sleep(3)
 
 
 if __name__ == '__main__':
