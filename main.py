@@ -36,38 +36,17 @@ def main():
                                  rolls=[0.4, 0],
                                  sleep_after_point_reached=1)
         time.sleep(1)
-        spot.move_head_in_points(yaws=[0.2, 0],
-                                 pitches=[0.3, 0],
-                                 rolls=[0.4, 0],
-                                 sleep_after_point_reached=1)
-        time.sleep(1)
-
-        # Make Spot to move by goal_x meters forward and goal_y meters left
-        spot.move_to_goal(goal_x=0.5, goal_y=0)
-        time.sleep(3)
-
-        # Basic Bounce
-        for _ in range(8):  # Do this 8 times for rhythmic effect
-            spot.stand_at_height(0.1)  # Lower slightly 
-            time.sleep(0.25)
-            spot.stand_at_height(0)  # Back to normal height
-            time.sleep(0.25)
         
-        # Hip Swing with Steps
-        for _ in range(4): 
-            spot.move_by_velocity_control(v_x=0, v_y=0.3, v_rot=0.1, cmd_duration=0.5) # Shift left, slight turn
-            spot.move_to_goal(goal_x=0.1, goal_y=0)  # Small "step" forward
-            spot.move_by_velocity_control(v_x=0, v_y=-0.3, v_rot=-0.1, cmd_duration=0.5) # Shift right, opposite turn
-            spot.move_to_goal(goal_x=0.1, goal_y=0)  # Another "step"
+        spot.move_by_velocity_control(v_x=0, v_y=0, v_rot=0.7, cmd_duration=1.5)  # A sharp spin
+        spot.bow(pitch=0.6)  # A quick, sassy head dip 
+        time.sleep(0.5)
+        spot.move_by_velocity_control(v_x=0, v_y=0, v_rot=-0.7, cmd_duration=1.5)  # Spin back 
         
-        # Optional: A bit of flair
-        spot.move_head_in_points(yaws=[0.3, -0.3], pitches=[0, 0], rolls=[0, 0])  # Quick head nods
-
-            
-        # Control Spot by velocity in m/s (or in rad/s for rotation)
-        spot.move_by_velocity_control(v_x=-0.3, v_y=0, v_rot=0, cmd_duration=2)
-        time.sleep(3)
-
+        for _ in range(3):
+            spot.move_to_goal(goal_x=0, goal_y=0.2)   # Shift left
+            spot.move_to_goal(goal_x=0.15, goal_y=0)  # Small kick forward
+            spot.move_to_goal(goal_x=0, goal_y=-0.2)  # Shift right
+            spot.move_to_goal(goal_x=0.15, goal_y=0)  # Another kick
 
 if __name__ == '__main__':
     main()
