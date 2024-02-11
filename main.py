@@ -30,23 +30,23 @@ def main():
 
         time.sleep(2)
 
-        # Move head to specified positions with intermediate time.sleep
-        spot.move_head_in_points(yaws=[0.2, 0],
-                                 pitches=[0.3, 0],
-                                 rolls=[0.4, 0],
-                                 sleep_after_point_reached=1)
-        time.sleep(1)
-        
-        spot.move_by_velocity_control(v_x=0, v_y=0, v_rot=0.7, cmd_duration=1.5)  # A sharp spin
-        spot.bow(pitch=0.6)  # A quick, sassy head dip 
-        time.sleep(0.5)
-        spot.move_by_velocity_control(v_x=0, v_y=0, v_rot=-0.7, cmd_duration=1.5)  # Spin back 
+        for _ in range(12):  # Do this 12 times for a longer intro
+            spot.stand_at_height(0.2)  # Up with some extra lift 
+            time.sleep(0.15) 
+            spot.stand_at_height(0) 
+            time.sleep(0.15) 
+            
+        for _ in range(4): 
+            spot.move_by_velocity_control(v_x=0, v_y=0.3, v_rot=0.2, cmd_duration=0.6)  # Left sway with turn
+            spot.move_to_goal(goal_x=0.1, goal_y=0) 
+            spot.move_by_velocity_control(v_x=0, v_y=-0.3, v_rot=-0.2, cmd_duration=0.6)  # Right sway, opposite turn
+            spot.move_to_goal(goal_x=0.1, goal_y=0) 
         
         for _ in range(3):
-            spot.move_to_goal(goal_x=0, goal_y=0.2)   # Shift left
-            spot.move_to_goal(goal_x=0.15, goal_y=0)  # Small kick forward
-            spot.move_to_goal(goal_x=0, goal_y=-0.2)  # Shift right
-            spot.move_to_goal(goal_x=0.15, goal_y=0)  # Another kick
+            spot.move_to_goal(goal_x=0.2, goal_y=0.1) # Forward with a side angle
+            time.sleep(0.4)
+            spot.move_to_goal(goal_x=0.2, goal_y=-0.1) # Same, other direction
+            time.sleep(0.4)
 
 if __name__ == '__main__':
     main()
