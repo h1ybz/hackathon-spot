@@ -176,6 +176,6 @@ class SpotController:
 
     def my_stand(self, bodyHeight, position):
         pos = EulerZXY(yaw=0.7, roll=0.0, pitch=0.0)
-        #cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=pos)
-        cmd = RobotCommandBuilder.synchro_stand_command(body_height=0.1)
-        command_client.robot_command(cmd)
+        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=pos)
+        #cmd = RobotCommandBuilder.synchro_stand_command(body_height=0.1)
+        self.command_client.robot_command(cmd)
