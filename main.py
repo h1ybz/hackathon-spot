@@ -46,22 +46,23 @@ def main():
         spot.move_to_goal(goal_x=0.5, goal_y=0)
         time.sleep(3)
 
-        # Head Bob
-        for _ in range(3):  # Repeat 3 times
-            spot.move_head_in_points(yaws=[0, 0], pitches=[0.4, 0], rolls=[0, 0]) 
-            time.sleep(0.5)  # Pause briefly
-            spot.move_head_in_points(yaws=[0, 0], pitches=[0, 0], rolls=[0, 0])  # Back to center
-            time.sleep(0.5)
-            
-        # Side Shuffle
-        for _ in range(2):
-            spot.move_by_velocity_control(v_x=0, v_y=0.4, v_rot=0, cmd_duration=0.7)  # Slide left
-            time.sleep(0.3)
-            spot.move_by_velocity_control(v_x=0, v_y=-0.4, v_rot=0, cmd_duration=0.7) # Slide right
-            time.sleep(0.3)
-    
-        # The Circle
-        spot.move_by_velocity_control(v_x=0.2, v_y=0.2, v_rot=0.5, cmd_duration=3) 
+        # Basic Bounce
+        for _ in range(8):  # Do this 8 times for rhythmic effect
+            spot.stand_at_height(0.1)  # Lower slightly 
+            time.sleep(0.25)
+            spot.stand_at_height(0)  # Back to normal height
+            time.sleep(0.25)
+        
+        # Hip Swing with Steps
+        for _ in range(4): 
+            spot.move_by_velocity_control(v_x=0, v_y=0.3, v_rot=0.1, cmd_duration=0.5) # Shift left, slight turn
+            spot.move_to_goal(goal_x=0.1, goal_y=0)  # Small "step" forward
+            spot.move_by_velocity_control(v_x=0, v_y=-0.3, v_rot=-0.1, cmd_duration=0.5) # Shift right, opposite turn
+            spot.move_to_goal(goal_x=0.1, goal_y=0)  # Another "step"
+        
+        # Optional: A bit of flair
+        spot.move_head_in_points(yaws=[0.3, -0.3], pitches=[0, 0], rolls=[0, 0])  # Quick head nods
+
             
         # Control Spot by velocity in m/s (or in rad/s for rotation)
         spot.move_by_velocity_control(v_x=-0.3, v_y=0, v_rot=0, cmd_duration=2)
