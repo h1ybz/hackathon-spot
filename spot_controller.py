@@ -84,7 +84,7 @@ class SpotController:
     def move_head_in_points(self, yaws, pitches, rolls, body_height=0, sleep_after_point_reached=0, timeout=3):
         for i in range(len(yaws)):
             footprint_r_body = EulerZXY(yaw=yaws[i], roll=rolls[i], pitch=pitches[i])
-            params = RobotCommandBuilder.mobility_params(footprint_R_body=footprint_r_body, body_height=body_height, obstacle_params=[disable_vision_body_obstacle_avoidance=1, obstacle_avoidance_padding=0])
+            params = RobotCommandBuilder.mobility_params(footprint_R_body=footprint_r_body, body_height=body_height, obstacle_params=0)
             blocking_stand(self.command_client, timeout_sec=timeout, update_frequency=0.02, params=params)
             self.robot.logger.info("Moved to yaw={} rolls={} pitch={}".format(yaws[i], rolls[i], pitches[i]))
             if sleep_after_point_reached:
