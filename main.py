@@ -35,7 +35,7 @@ def main():
         time.sleep(1)
 
         # Gentle head nods
-        spot.move_head_in_points([0.2, 0.0, -0.2], [0.2, 0, -0.2], [0, 0, 0])
+        spot.move_head_in_points(yaws=[0.2, 0.0], pitches=[0.2, 0], rolls=[0, 0], sleep_after_point_reached=1)
         time.sleep(1)
         capture_image()
 
