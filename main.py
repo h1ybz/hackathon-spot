@@ -32,22 +32,28 @@ def main():
     # and to return lease + sit down at the end
     with SpotController(username=SPOT_USERNAME, password=SPOT_PASSWORD, robot_ip=ROBOT_IP) as spot:
 
-        time.sleep(1)
+        time.sleep(0.5)
 
         # Gentle head nods
         spot.move_head_in_points(yaws=[0.2, 0.0], pitches=[0.2, 0], rolls=[0, 0], sleep_after_point_reached=1)
         time.sleep(1)
         capture_image()
+        spot.move_head_in_points(yaws=[-0.2, 0.0], pitches=[-0.2, 0], rolls=[0, 0], sleep_after_point_reached=1)
+        time.sleep(1)
+        capture_image()
 
         # Side Shuffle (adjust distances and timing as desired)
         for _ in range(4):
-            spot.move_by_velocity_control(v_y=0.3, cmd_duration=0.5)
-            spot.move_by_velocity_control(v_y=-0.3, cmd_duration=0.5)
+            spot.move_by_velocity_control(v_y=0.3, cmd_duration=1)
+            spot.move_by_velocity_control(v_y=-0.3, cmd_duration=1)
             time.sleep(1)
             capture_image()
 
         # Spin 
-        spot.move_by_velocity_control(v_rot=1.0, cmd_duration=2.0)
+        spot.move_by_velocity_control(v_rot=1.0, cmd_duration=5.0)
+        time.sleep(1)
+        capture_image()
+        spot.move_by_velocity_control(v_rot=-1.0, cmd_duration=5.0)
         time.sleep(1)
         capture_image()
             
