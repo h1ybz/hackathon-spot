@@ -156,7 +156,7 @@ class SpotController:
 
     def move_by_velocity_control(self, v_x=0.0, v_y=0.0, v_rot=0.0, cmd_duration=VELOCITY_CMD_DURATION):
         # v_x+ - forward, v_y+ - left | m/s, v_rot+ - counterclockwise |rad/s
-        params = RobotCommandBuilder.mobility_params(obstacle_params=0)
+        params = RobotCommandBuilder.mobility_params(obstacle_params={disable_vision_body_obstacle_avoidance=True,obstacle_avoidance_padding=0})
         self._start_robot_command(
             RobotCommandBuilder.synchro_velocity_command(v_x=v_x, v_y=v_y, v_rot=v_rot, params=params),
             end_time_secs=time.time() + cmd_duration)

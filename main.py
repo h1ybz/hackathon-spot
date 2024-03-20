@@ -37,7 +37,7 @@ def main():
         print("Starting dance routine...")
 
         # Move forward
-        spot.move_by_velocity_control(v_x=1, cmd_duration = 3)
+        spot.move_by_velocity_control(v_x=1, cmd_duration = 2)
         time.sleep(5)
 
 
