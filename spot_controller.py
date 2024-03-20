@@ -158,7 +158,7 @@ class SpotController:
         # v_x+ - forward, v_y+ - left | m/s, v_rot+ - counterclockwise |rad/s
         mobility_params = spot_command_pb2.ObstacleParams(
             disable_vision_body_obstacle_avoidance=True,
-            disable_vision_foot_avoidance=True,
+            disable_vision_foot_obstacle_avoidance=True,
             disable_vision_foot_constraint_avoidance=True,
             obstacle_avoidance_padding=0)
         self._start_robot_command(
