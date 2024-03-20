@@ -35,11 +35,17 @@ def main():
 
         # Start the dance routine
         print("Starting dance routine...")
-        
-        # Stand up and adjust body height for the starting position
-        spot.stand_at_height(body_height=0.5)
-        time.sleep(2)
-        capture_image()
+
+        spot.stand_at_height(body_height=-0.2)
+        time.sleep(5)
+        spot.stand_at_height(body_height=-.5)
+        time.sleep(5)
+
+
+        # Move forward
+        spot.move_by_velocity_control(v_x=1)
+        time.sleep(5)
+
 
         # Bow as a final gesture
         spot.bow(pitch=-0.3, body_height=0, sleep_after_point_reached=2)
