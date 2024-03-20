@@ -173,9 +173,3 @@ class SpotController:
 
     def dust_off(self, yaws, pitches, rolls):
         self.move_head_in_points(yaws, pitches, rolls, sleep_after_point_reached=0, body_height=0)
-
-    def my_stand(self, bodyHeight, position):
-        pos = EulerZXY(yaw=0.7, roll=0.0, pitch=0.0)
-        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=pos)
-        #cmd = RobotCommandBuilder.synchro_stand_command(body_height=0.1)
-        self.command_client.robot_command(cmd)
