@@ -41,29 +41,10 @@ def main():
         time.sleep(2)
         capture_image()
 
-        # Move in a small circle
-        for _ in range(4):
-            spot.move_by_velocity_control(v_x=0.2, v_y=0, v_rot=0.5, cmd_duration=1.5)
-            time.sleep(5)
-            capture_image()
-
-        # Stand at different heights
-        spot.stand_at_height(body_height=0.1)
-        time.sleep(5)
-        capture_image()
-        spot.stand_at_height(body_height=0.5)
-        time.sleep(5)
-        capture_image()
-        spot.stand_at_height(body_height=0.2)
-        time.sleep(5)
-        capture_image()
-        spot.stand_at_height(body_height=0.5)
-        time.sleep(5)
-        capture_image()
-
-
         # Bow as a final gesture
-        spot.bow(pitch=0.3, body_height=0, sleep_after_point_reached=2)
+        spot.bow(pitch=-0.3, body_height=0, sleep_after_point_reached=2)
+        time.sleep(3)
+        capture_image()
 
         print("Dance routine completed!")
 
