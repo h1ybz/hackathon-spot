@@ -160,7 +160,7 @@ class SpotController:
             disable_vision_body_obstacle_avoidance=True,
             disable_vision_foot_obstacle_avoidance=True,
             disable_vision_foot_constraint_avoidance=True,
-            obstacle_avoidance_padding=0)
+            obstacle_avoidance_padding=0.001)
         self._start_robot_command(
             RobotCommandBuilder.synchro_velocity_command(v_x=v_x, v_y=v_y, v_rot=v_rot, params=mobility_params),
             end_time_secs=time.time() + cmd_duration)
