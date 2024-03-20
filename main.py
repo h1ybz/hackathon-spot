@@ -36,14 +36,8 @@ def main():
         # Start the dance routine
         print("Starting dance routine...")
 
-        spot.stand_at_height(body_height=-0.2)
-        time.sleep(5)
-        spot.stand_at_height(body_height=-.5)
-        time.sleep(5)
-
-
         # Move forward
-        spot.move_by_velocity_control(v_x=1)
+        spot.move_by_velocity_control(v_y=1, cmd_duration = 3)
         time.sleep(5)
 
 
