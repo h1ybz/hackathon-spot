@@ -31,43 +31,33 @@ def main():
     # Use wrapper in context manager to lease control, turn on E-Stop, power on the robot and stand up at start
     # and to return lease + sit down at the end
     with SpotController(username=SPOT_USERNAME, password=SPOT_PASSWORD, robot_ip=ROBOT_IP) as spot:
+        time.sleep(2)  # Give Spot a moment to initialize
 
+        # Start the dance routine
+        print("Starting dance routine...")
+        
+        # Stand up and adjust body height for the starting position
+        spot.stand_at_height(body_height=0.5)
         time.sleep(2)
         capture_image()
-        # Move head to specified positions with intermediate time.sleep
-        spot.move_head_in_points(yaws=[0.2, 0],
-                                 pitches=[0.3, 0],
-                                 rolls=[0.4, 0],
-                                 sleep_after_point_reached=1)
-        capture_image()
-        time.sleep(3)
 
-        # Make Spot to move by goal_x meters forward and goal_y meters left
-        spot.move_to_goal(goal_x=0.5, goal_y=0)
-        time.sleep(3)
-        capture_image()
+        # Move in a small circle
+        for _ in range(4):
+            spot.move_by_velocity_control(v_x=0.2, v_y=0, v_rot=0.5, cmd_duration=1.5)
+            time.sleep(1.5)
+            capture_image()
 
-        # Head Bob
-        for _ in range(3):  # Repeat 3 times
-            spot.move_head_in_points(yaws=[0, 0], pitches=[0.4, 0], rolls=[0, 0]) 
-            time.sleep(0.5)  # Pause briefly
-            spot.move_head_in_points(yaws=[0, 0], pitches=[0, 0], rolls=[0, 0])  # Back to center
-            time.sleep(0.5)
-            
-        # Side Shuffle
-        for _ in range(2):
-            spot.move_by_velocity_control(v_x=0, v_y=0.4, v_rot=0, cmd_duration=0.7)  # Slide left
-            time.sleep(0.3)
-            spot.move_by_velocity_control(v_x=0, v_y=-0.4, v_rot=0, cmd_duration=0.7) # Slide right
-            time.sleep(0.3)
-    
-        # The Circle
-        spot.move_by_velocity_control(v_x=0.2, v_y=0.2, v_rot=0.5, cmd_duration=3) 
-            
-        # Control Spot by velocity in m/s (or in rad/s for rotation)
-        spot.move_by_velocity_control(v_x=-0.3, v_y=0, v_rot=0, cmd_duration=2)
-        capture_image()
-        time.sleep(3)
+        # Stand at different heights
+        heights = [0.3, 0.6, 0.3, 0.6]
+        for height in heights:
+            spot.stand_at_height(body_height=height)
+            time.sleep(2)
+            capture_image()
+
+        # Bow as a final gesture
+        spot.bow(pitch=0.3, body_height=0, sleep_after_point_reached=2)
+
+        print("Dance routine completed!")
 
 
 if __name__ == '__main__':
