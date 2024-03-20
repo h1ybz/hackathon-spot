@@ -84,7 +84,7 @@ class SpotController:
     def move_head_in_points(self, yaws, pitches, rolls, body_height=0, sleep_after_point_reached=0, timeout=3):
         for i in range(len(yaws)):
             footprint_r_body = EulerZXY(yaw=yaws[i], roll=rolls[i], pitch=pitches[i])
-            params = RobotCommandBuilder.mobility_params(footprint_R_body=footprint_r_body, body_height=body_height, obstacle_params=0)
+            params = RobotCommandBuilder.mobility_params(footprint_R_body=footprint_r_body, body_height=body_height)
             blocking_stand(self.command_client, timeout_sec=timeout, update_frequency=0.02, params=params)
             self.robot.logger.info("Moved to yaw={} rolls={} pitch={}".format(yaws[i], rolls[i], pitches[i]))
             if sleep_after_point_reached:
@@ -156,8 +156,14 @@ class SpotController:
 
     def move_by_velocity_control(self, v_x=0.0, v_y=0.0, v_rot=0.0, cmd_duration=VELOCITY_CMD_DURATION):
         # v_x+ - forward, v_y+ - left | m/s, v_rot+ - counterclockwise |rad/s
+        params = RobotCommandBuilder.obstacle_params(
+            disable_vision_foot_obstacle_avoidance = True,
+            disable_vision_foot_constraint_avoidance = True,
+            disable_vision_body_obstacle_avoidance = True,
+            obstacle_avoidance_padding = 0
+        )
         self._start_robot_command(
-            RobotCommandBuilder.synchro_velocity_command(v_x=v_x, v_y=v_y, v_rot=v_rot),
+            RobotCommandBuilder.synchro_velocity_command(v_x=v_x, v_y=v_y, v_rot=v_rot, params=params),
             end_time_secs=time.time() + cmd_duration)
 
     def _start_robot_command(self, command_proto, end_time_secs=None):
