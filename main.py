@@ -31,23 +31,28 @@ def main():
     # Use wrapper in context manager to lease control, turn on E-Stop, power on the robot and stand up at start
     # and to return lease + sit down at the end
     with SpotController(username=SPOT_USERNAME, password=SPOT_PASSWORD, robot_ip=ROBOT_IP) as spot:
-        time.sleep(2)  # Give Spot a moment to initialize
-
-        # Start the dance routine
-        print("Starting dance routine...")
-
-        # Move forward
-        spot.move_by_velocity_control(v_x=1, cmd_duration = 2)
-        time.sleep(5)
-
-
-        # Bow as a final gesture
-        spot.bow(pitch=-0.3, body_height=0, sleep_after_point_reached=2)
-        time.sleep(3)
-        capture_image()
-
-        print("Dance routine completed!")
-
+        # Give Spot a moment to initialize
+        time.sleep(2)
+        
+        print("Approaching the chair...")
+        # Step 1: Approach the Chair
+        # Assuming 1 meter is approximately 3.28 feet
+        spot.move_to_goal(goal_x=0.91)  # Move forward by 3 feet (0.91 meters)
+        
+        # Step 2: Stop and Look Up at the Chair
+        print("Looking up at the chair...")
+        spot.move_head_in_points(yaws=[0], pitches=[-0.2], rolls=[0], sleep_after_point_reached=1)
+        
+        # Step 3: Walk to the Side of the Chair
+        print("Moving to the side of the chair...")
+        spot.move_by_velocity_control(v_rot=1.57, cmd_duration=1)  # Rotate 90 degrees
+        spot.move_by_velocity_control(v_x=0.61, cmd_duration=2)  # Move to the side by 2 feet (0.61 meters)
+        
+        # Step 4: Push the Chair
+        print("Pushing the chair...")
+        spot.move_by_velocity_control(v_x=0.3, cmd_duration=2)  # Push forward 1 foot (0.3 meters)
+        
+        print("Task completed!")
 
 if __name__ == '__main__':
     main()
