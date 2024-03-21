@@ -46,15 +46,17 @@ def main():
         
         # Step 3: Walk to the Side of the Chair
         print("Moving to the side of the chair...")
-        spot.move_by_velocity_control(v_rot=1.57, cmd_duration=1)  # Rotate 90 degrees
-        time.sleep(5)
-        spot.move_by_velocity_control(v_x=0.61, cmd_duration=2)  # Move to the side by 2 feet (0.61 meters)
-        time.sleep(5)
+        spot.move_by_velocity_control(v_rot=1.0472, cmd_duration=1)  # Rotate 60 degrees to the right
+        time.sleep(2)  # Wait for rotation to complete
+        spot.move_by_velocity_control(v_x=0.3, cmd_duration=1)  # Move forward by 1 foot (0.3 meters)
+        time.sleep(2)  # Wait for movement to complete
+        spot.move_by_velocity_control(v_rot=-1.8326, cmd_duration=1.5)  # Rotate 105 degrees to the left
+        time.sleep(2)  # Wait for rotation to complete
         
-        # Step 4: Push the Chair
+        # Push the Chair
         print("Pushing the chair...")
         spot.move_by_velocity_control(v_x=0.3, cmd_duration=2)  # Push forward 1 foot (0.3 meters)
-        time.sleep(2)
+        
         
         print("Task completed!")
 
