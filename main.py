@@ -41,10 +41,15 @@ def main():
         time.sleep(0.5)
 
         # Side Shuffle (adjust distances and timing as desired)
-        for _ in range(4):
-            spot.move_by_velocity_control(v_y=0.3, cmd_duration=1)
-            spot.move_by_velocity_control(v_y=-0.3, cmd_duration=1)
-            time.sleep(0.5)
+        #for _ in range(4):
+        spot.move_by_velocity_control(v_y=0.3, cmd_duration=1)
+        time.sleep(1)
+        spot.move_by_velocity_control(v_y=-0.3, cmd_duration=1)
+        time.sleep(1)
+        spot.move_by_velocity_control(v_y=0.3, cmd_duration=1)
+        time.sleep(1)
+        spot.move_by_velocity_control(v_y=-0.3, cmd_duration=1)
+        time.sleep(1)
 
         # Up/Down
         spot.stand_at_height(0)
@@ -68,9 +73,9 @@ def main():
         
         # Spin 
         spot.move_by_velocity_control(v_rot=1.0, cmd_duration=5.0)
-        time.sleep(0.5)
+        time.sleep(5)
         spot.move_by_velocity_control(v_rot=-1.0, cmd_duration=5.0)
-        time.sleep(0.5)
+        time.sleep(5)
             
 if __name__ == '__main__':
     main()
