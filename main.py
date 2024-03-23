@@ -57,7 +57,9 @@ def main():
         print("Pushing the chair...")
         spot.move_by_velocity_control(v_x=0.3, cmd_duration=2)  # Push forward 1 foot (0.3 meters)
         time.sleep(2)
-        
+
+        spot.move_head_in_points(yaws=[0.0, 0.0], pitches=[0.9, 0], rolls=[0, 0], sleep_after_point_reached=2)
+        time.sleep(2)
         
         print("Task completed!")
 
