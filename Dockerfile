@@ -18,4 +18,3 @@ RUN python3.8 -m pip install -r requirements.txt
 COPY . .
 
 CMD ["python3.8", "main.py"]
-CMD ["/bin/sh"]
