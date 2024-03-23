@@ -35,10 +35,18 @@ def main():
         time.sleep(0.5)
 
         # Gentle head nods
-        spot.move_head_in_points(yaws=[0.2, 0.0], pitches=[0.2, 0], rolls=[0, 0], sleep_after_point_reached=1)
-        time.sleep(0.5)
-        spot.move_head_in_points(yaws=[-0.2, 0.0], pitches=[-0.2, 0], rolls=[0, 0], sleep_after_point_reached=1)
-        time.sleep(0.5)
+        spot.move_head_in_points(yaws=[0.0, 0.0], pitches=[0.2, 0], rolls=[0, 0], sleep_after_point_reached=0.15)
+        time.sleep(0.15)
+        spot.move_head_in_points(yaws=[0.0, 0.0], pitches=[-0.2, 0], rolls=[0, 0], sleep_after_point_reached=0.15)
+        time.sleep(0.15)
+        spot.move_head_in_points(yaws=[0.0, 0.0], pitches=[0.2, 0], rolls=[0, 0], sleep_after_point_reached=0.15)
+        time.sleep(0.15)
+        spot.move_head_in_points(yaws=[0.0, 0.0], pitches=[-0.2, 0], rolls=[0, 0], sleep_after_point_reached=0.15)
+        time.sleep(0.15)
+        spot.move_head_in_points(yaws=[0.0, 0.0], pitches=[0.2, 0], rolls=[0, 0], sleep_after_point_reached=0.15)
+        time.sleep(0.15)
+        spot.move_head_in_points(yaws=[0.0, 0.0], pitches=[-0.2, 0], rolls=[0, 0], sleep_after_point_reached=0.15)
+        time.sleep(0.15)
 
         # Side Shuffle (adjust distances and timing as desired)
         #for _ in range(4):
@@ -72,9 +80,9 @@ def main():
         time.sleep(0.15) 
         
         # Spin 
-        spot.move_by_velocity_control(v_rot=1.0, cmd_duration=5.0)
+        spot.move_by_velocity_control(v_rot=0.5, cmd_duration=5.0)
         time.sleep(5)
-        spot.move_by_velocity_control(v_rot=-1.0, cmd_duration=5.0)
+        spot.move_by_velocity_control(v_rot=-0.5, cmd_duration=5.0)
         time.sleep(5)
             
 if __name__ == '__main__':
