@@ -34,30 +34,15 @@ def main():
         # Give Spot a moment to initialize
         time.sleep(2)
         
-        print("Approaching the chair...")
-        # Step 1: Approach the Chair
-        # Assuming 1 meter is approximately 3.28 feet
-        spot.move_to_goal(goal_x=0.91)  # Move forward by 3 feet (0.91 meters)
-        
-        # Step 2: Stop and Look Up at the Chair
-        print("Looking up at the chair...")
-        spot.move_head_in_points(yaws=[0], pitches=[-1], rolls=[0], sleep_after_point_reached=1)
+        # forward
+        spot.move_to_goal(goal_x=0.5)  # Move forward by 3 feet (0.91 meters)
         time.sleep(2)
         
-        # Step 3: Walk to the Side of the Chair
-        print("Moving to the side of the chair...")
-        spot.move_by_velocity_control(v_rot=-0.5, cmd_duration=2.5)  # Rotate 60 degrees to the right
-        time.sleep(2.5)  # Wait for rotation to complete
-        spot.move_by_velocity_control(v_x=0.9, cmd_duration=1)  # Move forward by 1 foot (0.3 meters)
-        time.sleep(1)  # Wait for movement to complete
-        spot.move_by_velocity_control(v_rot=0.5, cmd_duration=5)  # Rotate 105 degrees to the left
-        time.sleep(5)  # Wait for rotation to complete
-        
-        # Push the Chair
-        print("Pushing the chair...")
-        spot.move_by_velocity_control(v_x=0.9, cmd_duration=2)  # Push forward 1 foot (0.3 meters)
-        time.sleep(2)
+        # turn
+        spot.move_by_velocity_control(v_rot=0.5, cmd_duration=5.0)
+        time.sleep(5)
 
+        # pitch
         spot.move_head_in_points(yaws=[0.0, 0.0], pitches=[1, 0], rolls=[0, 0], sleep_after_point_reached=2)
         time.sleep(2)
         
