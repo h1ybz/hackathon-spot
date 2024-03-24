@@ -41,7 +41,7 @@ def main():
         
         # Step 2: Stop and Look Up at the Chair
         print("Looking up at the chair...")
-        spot.move_head_in_points(yaws=[0], pitches=[-0.9], rolls=[0], sleep_after_point_reached=1)
+        spot.move_head_in_points(yaws=[0], pitches=[-1], rolls=[0], sleep_after_point_reached=1)
         time.sleep(2)
         
         # Step 3: Walk to the Side of the Chair
@@ -50,15 +50,15 @@ def main():
         time.sleep(2.5)  # Wait for rotation to complete
         spot.move_by_velocity_control(v_x=0.9, cmd_duration=1)  # Move forward by 1 foot (0.3 meters)
         time.sleep(1)  # Wait for movement to complete
-        spot.move_by_velocity_control(v_rot=0.5, cmd_duration=2.5)  # Rotate 105 degrees to the left
-        time.sleep(2.5)  # Wait for rotation to complete
+        spot.move_by_velocity_control(v_rot=0.5, cmd_duration=5)  # Rotate 105 degrees to the left
+        time.sleep(5)  # Wait for rotation to complete
         
         # Push the Chair
         print("Pushing the chair...")
         spot.move_by_velocity_control(v_x=0.9, cmd_duration=2)  # Push forward 1 foot (0.3 meters)
         time.sleep(2)
 
-        spot.move_head_in_points(yaws=[0.0, 0.0], pitches=[0.9, 0], rolls=[0, 0], sleep_after_point_reached=2)
+        spot.move_head_in_points(yaws=[0.0, 0.0], pitches=[1, 0], rolls=[0, 0], sleep_after_point_reached=2)
         time.sleep(2)
         
         print("Task completed!")
